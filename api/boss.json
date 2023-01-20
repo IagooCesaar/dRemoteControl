@@ -9,6 +9,7 @@
 		"github.com/gabrielbaltazar/gbswagger": "^3.0.5",
 		"github.com/hashload/handle-exception": "^0.1.7",
 		"github.com/hashload/horse": "^3.0.2",
-		"github.com/hashload/horse-logger": "^2.0.6"
+		"github.com/hashload/horse-logger": "^2.0.6",
+		"github.com/hashload/horse-logger-provider-console": "^1.0.5"
 	}
 }

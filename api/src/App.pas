@@ -11,14 +11,21 @@ uses
   System.SysUtils,
 
   Horse,
+  Horse.Logger,
+  Horse.Logger.Provider.Console,
   Horse.HandleException,
   Horse.GBSwagger;
 
 const API_VERSION = '0.1.0';
 
 procedure ConfigLogger();
+var LLogFileConfig: THorseLoggerConsoleConfig;
 begin
+  LLogFileConfig := THorseLoggerConsoleConfig.New
+    .SetLogFormat('${request_clientip} [${time}] "${request_method}::${request_path_translated}" '+
+    '${response_status} ${execution_time}ms');
 
+  THorseLoggerManager.RegisterProvider(THorseLoggerProviderConsole.New());
 end;
 
 procedure ConfigSwagger();
@@ -59,6 +66,7 @@ begin
   ConfigSwagger();
 
   THorse
+    .Use(THorseLoggerManager.HorseCallback)
     .Use(HorseSwagger(LContext+'/swagger-ui', LContext+'/api-docs'));
 
   THorse.Listen(LPort,

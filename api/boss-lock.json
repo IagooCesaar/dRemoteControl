@@ -42,6 +42,14 @@
 			"failed": false,
 			"changed": false
 		},
+		"github.com/hashload/horse-logger-provider-console": {
+			"name": "horse-logger-provider-console",
+			"version": "1.0.5",
+			"hash": "eec5b558d081e06ce3b9d14eb322dd36",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		},
 		"github.com/hashload/jhonson": {
 			"name": "jhonson",
 			"version": "1.1.4",
