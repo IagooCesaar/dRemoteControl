@@ -62,7 +62,7 @@ begin
 
   // O número da porta pode ser passada por parâmetro para o executável
   LPort :=  StrToIntDef(ParamStr(1), 9000);
-  LContext := '/d-remote-control';
+  LContext := '/remote-control';
 
   ConfigLogger();
   ConfigSwagger();
