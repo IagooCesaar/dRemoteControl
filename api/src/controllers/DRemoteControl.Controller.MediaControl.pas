@@ -10,11 +10,16 @@ implementation
 uses
   Horse,
   Horse.GBSwagger,
-  GBSwagger.Model.Interfaces;
+  GBSwagger.Model.Interfaces,
+
+  Winapi.Windows;
 
 procedure PostPlayPause(Req: THorseRequest; Resp: THorseResponse);
 begin
+  keybd_event(VK_MEDIA_PLAY_PAUSE, 0, 0, 0);
+  keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_KEYUP, 0);
 
+  Resp.Status(THTTPStatus.NoContent);
 end;
 
 procedure Registry(AContext: string);
@@ -31,7 +36,7 @@ begin
   Swagger
     .Path(AContext+'/play-pause')
     .Tag('Controles de Mídia')
-      .POST('Altera o estado da mídia em execução para Play ou Pause')
+      .POST('Play/Pause')
         .Description('Altera o estado da mídia em execução para Play ou Pause')
 
         .AddResponse(Integer(THTTPStatus.NoContent)).&End
