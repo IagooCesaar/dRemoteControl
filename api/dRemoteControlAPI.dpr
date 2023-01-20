@@ -6,7 +6,8 @@ program dRemoteControlAPI;
 
 uses
   System.SysUtils,
-  App in 'src\App.pas';
+  App in 'src\App.pas',
+  DRemoteControl.Controller.Registry in 'src\controllers\DRemoteControl.Controller.Registry.pas';
 
 begin
   try

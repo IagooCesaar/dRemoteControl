@@ -74,7 +74,8 @@
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>dRemoteControlAPI</SanitizedProjectName>
-    <DCC_UnitSearchPath>$(DCC_UnitSearchPath);modules\.dcp;modules\.dcu;modules;modules\gbswagger\Source\Core;modules\gbswagger\Source\Datasnap;modules\gbswagger\Source\Horse;modules\gbswagger\Source\Validator;modules\handle-exception\src;modules\horse\src;modules\horse-logger\src;modules\horse-logger-provider-console\src;modules\horse-utils-clientip\src;modules\jhonson\src</DCC_UnitSearchPath></PropertyGroup>
+        <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;modules;modules\gbswagger\Source\Core;modules\gbswagger\Source\Datasnap;modules\gbswagger\Source\Horse;modules\gbswagger\Source\Validator;modules\handle-exception\src;modules\horse\src;modules\horse-logger\src;modules\horse-logger-provider-console\src;modules\horse-utils-clientip\src;modules\jhonson\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;RESTComponents;DBXInterBaseDriver;tethering;bindcompfmx;FmxTeeUI;fmx;FireDACIBDriver;dbexpress;IndyCore;dsnap;FireDACCommon;RESTBackendComponents;soapserver;bindengine;CloudService;FireDACCommonDriver;inet;IndyIPCommon;bindcompdbx;IndyIPServer;IndySystem;fmxFireDAC;FireDAC;FireDACSqliteDriver;FMXTee;soaprtl;DbxCommonDriver;xmlrtl;soapmidas;rtl;DbxClientDriver;CustomIPTransport;bindcomp;IndyIPClient;dbxcds;dsnapxml;dbrtl;IndyProtocols;$(DCC_UsePackage)</DCC_UsePackage>
         <Android_LauncherIcon36>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png</Android_LauncherIcon36>
@@ -161,6 +162,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="src\App.pas"/>
+        <DCCReference Include="src\controllers\DRemoteControl.Controller.Registry.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

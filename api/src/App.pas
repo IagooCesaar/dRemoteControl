@@ -14,7 +14,9 @@ uses
   Horse.Logger,
   Horse.Logger.Provider.Console,
   Horse.HandleException,
-  Horse.GBSwagger;
+  Horse.GBSwagger,
+
+  DRemoteControl.Controller.Registry;
 
 const API_VERSION = '0.1.0';
 
@@ -60,7 +62,7 @@ begin
 
   // O número da porta pode ser passada por parâmetro para o executável
   LPort :=  StrToIntDef(ParamStr(1), 9000);
-  LContext := '/d-remote-control-api';
+  LContext := '/d-remote-control';
 
   ConfigLogger();
   ConfigSwagger();
@@ -68,6 +70,8 @@ begin
   THorse
     .Use(THorseLoggerManager.HorseCallback)
     .Use(HorseSwagger(LContext+'/swagger-ui', LContext+'/api-docs'));
+
+  DRemoteControl.Controller.Registry.Registry(LContext);
 
   THorse.Listen(LPort,
     procedure(Horse: THorse)
