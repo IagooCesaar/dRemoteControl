@@ -2,13 +2,13 @@ program dRemoteControlDesktop;
 
 uses
   Vcl.Forms,
-  ufrmPrinc in 'ufrmPrinc.pas' {Form1};
+  ufrmPrinc in 'src\ufrmPrinc.pas' {frmPrinc};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmPrinc, frmPrinc);
   Application.Run;
 end.
