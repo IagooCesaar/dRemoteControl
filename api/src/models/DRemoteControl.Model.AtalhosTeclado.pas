@@ -18,9 +18,13 @@ type
     class function New: IDRemoteControlModelAtalhosTeclado;
 
 
-    function MediaPlayPause: Boolean;
-    function MediaNextTrack: Boolean;
-    function MediaPreviousTrack: Boolean;
+    function MediaPressionarPlayPause: Boolean;
+    function MediaPressionarStop: Boolean;
+    function MediaPressionarNextTrack: Boolean;
+    function MediaPressionarPreviousTrack: Boolean;
+    function MediaPressionarAumentarVolume: Boolean;
+    function MediaPressionarDiminuirVolume: Boolean;
+    function MediaPressionarMutarVolume: Boolean;
 
   end;
 
@@ -39,19 +43,39 @@ begin
   inherited;
 end;
 
-function TDRemoteControlModelAtalhosTeclados.MediaNextTrack: Boolean;
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarDiminuirVolume: Boolean;
+begin
+  Self.PressionarLiberarTecla(VK_VOLUME_DOWN);
+end;
+
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarAumentarVolume: Boolean;
+begin
+  Self.PressionarLiberarTecla(VK_VOLUME_UP);
+end;
+
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarMutarVolume: Boolean;
+begin
+  Self.PressionarLiberarTecla(VK_VOLUME_MUTE);
+end;
+
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarNextTrack: Boolean;
 begin
   Self.PressionarLiberarTecla(VK_MEDIA_NEXT_TRACK);
 end;
 
-function TDRemoteControlModelAtalhosTeclados.MediaPlayPause: Boolean;
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarPlayPause: Boolean;
 begin
   Self.PressionarLiberarTecla(VK_MEDIA_PLAY_PAUSE);
 end;
 
-function TDRemoteControlModelAtalhosTeclados.MediaPreviousTrack: Boolean;
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarPreviousTrack: Boolean;
 begin
   Self.PressionarLiberarTecla(VK_MEDIA_PREV_TRACK);
+end;
+
+function TDRemoteControlModelAtalhosTeclados.MediaPressionarStop: Boolean;
+begin
+  Self.PressionarLiberarTecla(VK_MEDIA_STOP);
 end;
 
 class function TDRemoteControlModelAtalhosTeclados.New: IDRemoteControlModelAtalhosTeclado;

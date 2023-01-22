@@ -17,7 +17,15 @@ uses
 procedure PostPlayPause(Req: THorseRequest; Resp: THorseResponse);
 begin
   TDRemoteControlModelAtalhosTeclados.New
-    .MediaPlayPause;
+    .MediaPressionarPlayPause;
+
+  Resp.Status(THTTPStatus.NoContent);
+end;
+
+procedure PostStop(Req: THorseRequest; Resp: THorseResponse);
+begin
+  TDRemoteControlModelAtalhosTeclados.New
+    .MediaPressionarStop;
 
   Resp.Status(THTTPStatus.NoContent);
 end;
@@ -25,7 +33,7 @@ end;
 procedure PostNextTrack(Req: THorseRequest; Resp: THorseResponse);
 begin
   TDRemoteControlModelAtalhosTeclados.New
-    .MediaNextTrack;
+    .MediaPressionarNextTrack;
 
   Resp.Status(THTTPStatus.NoContent);
 end;
@@ -33,7 +41,31 @@ end;
 procedure PostPreviousTrack(Req: THorseRequest; Resp: THorseResponse);
 begin
   TDRemoteControlModelAtalhosTeclados.New
-    .MediaPreviousTrack;
+    .MediaPressionarPreviousTrack;
+
+  Resp.Status(THTTPStatus.NoContent);
+end;
+
+procedure PostVolumeUp(Req: THorseRequest; Resp: THorseResponse);
+begin
+  TDRemoteControlModelAtalhosTeclados.New
+    .MediaPressionarAumentarVolume;
+
+  Resp.Status(THTTPStatus.NoContent);
+end;
+
+procedure PostVolumeDown(Req: THorseRequest; Resp: THorseResponse);
+begin
+  TDRemoteControlModelAtalhosTeclados.New
+    .MediaPressionarDiminuirVolume;
+
+  Resp.Status(THTTPStatus.NoContent);
+end;
+
+procedure PostVolumeMute(Req: THorseRequest; Resp: THorseResponse);
+begin
+  TDRemoteControlModelAtalhosTeclados.New
+    .MediaPressionarMutarVolume;
 
   Resp.Status(THTTPStatus.NoContent);
 end;
@@ -42,8 +74,13 @@ procedure Registry(AContext: string);
 const cResource = '/media-control';
 begin
   THorse.Post(AContext + cResource + '/play-pause', PostPlayPause);
+  THorse.Post(AContext + cResource + '/stop', PostStop);
   THorse.Post(AContext + cResource + '/next-track', PostNextTrack);
   THorse.Post(AContext + cResource + '/previous-track', PostPreviousTrack);
+
+  THorse.Post(AContext + cResource + '/volume-up', PostVolumeUp);
+  THorse.Post(AContext + cResource + '/volume-down', PostVolumeDown);
+  THorse.Post(AContext + cResource + '/volume-mute', PostVolumeMute);
 
 
   ConfigSwagger(AContext + cResource);
@@ -56,6 +93,16 @@ begin
     .Tag('Controles de Mídia')
       .POST('Play/Pause')
         .Description('Altera o estado da mídia em execução para Play ou Pause')
+
+        .AddResponse(Integer(THTTPStatus.NoContent)).&End
+        .AddResponse(Integer(THTTPStatus.BadRequest)).&End
+      .&End
+    .&End
+
+    .Path(AContext+'/stop')
+    .Tag('Controles de Mídia')
+      .POST('Stop')
+        .Description('Altera o estado da mídia em execução para Stop')
 
         .AddResponse(Integer(THTTPStatus.NoContent)).&End
         .AddResponse(Integer(THTTPStatus.BadRequest)).&End
@@ -76,6 +123,36 @@ begin
     .Tag('Controles de Mídia')
       .POST('Mídia anteroior')
         .Description('Altera o estado da mídia em execução para Play ou Pause')
+
+        .AddResponse(Integer(THTTPStatus.NoContent)).&End
+        .AddResponse(Integer(THTTPStatus.BadRequest)).&End
+      .&End
+    .&End
+
+    .Path(AContext+'/volume-up')
+    .Tag('Controles de Mídia')
+      .POST('Aumentar o volume')
+        .Description('Aumentará o volume do áudio do dispositivo')
+
+        .AddResponse(Integer(THTTPStatus.NoContent)).&End
+        .AddResponse(Integer(THTTPStatus.BadRequest)).&End
+      .&End
+    .&End
+
+    .Path(AContext+'/volume-down')
+    .Tag('Controles de Mídia')
+      .POST('Diminuir o volume')
+        .Description('Diminuirá o volume do áudio do dispositivo')
+
+        .AddResponse(Integer(THTTPStatus.NoContent)).&End
+        .AddResponse(Integer(THTTPStatus.BadRequest)).&End
+      .&End
+    .&End
+
+    .Path(AContext+'/volume-mute')
+    .Tag('Controles de Mídia')
+      .POST('Selenciar o volume')
+        .Description('Silenciará o volume do áudio do dispositivo')
 
         .AddResponse(Integer(THTTPStatus.NoContent)).&End
         .AddResponse(Integer(THTTPStatus.BadRequest)).&End
